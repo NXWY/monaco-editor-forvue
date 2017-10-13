@@ -1,7 +1,7 @@
 {
   "name": "monaco-editor-forvue",
   "version": "1.0.0",
-  "description": "> Monaco Editor Vue Component",
+  "description": "Monaco Editor Vue Component",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},
