@@ -1,26 +1,25 @@
-# vue-monaco-editor
+# monaco-editor-forvue
 
 > Monaco Editor Vue Component
 
-> Based off [React Monaco Editor](https://github.com/superRaytin/react-monaco-editor)
+> Based on [vue-monaco-editor](https://github.com/matt-oconnell/vue-monaco-editor)
 
-> [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
 ## Setup
 
 ``` bash
-npm install vue-monaco-editor --save
+npm install monaco-editor-forvue --save
 ```
 
 ## Simple Vue Use
 
 ```js
-import MonacoEditor from 'vue-monaco-editor'
+import Monaco from 'monaco-editor-forvue';
 
 // use in component
 export default {
   components: {
-    MonacoEditor
+    Monaco
   }
 }
 ```
@@ -34,22 +33,9 @@ export default {
 | width | Number/String | `100%` ||
 | code | String | `// code \n` | Initial code to show |
 | theme | String | `vs-dark` | vs, hc-black, or vs-dark |
-| highlighted | Array[Object] | `[{ number: 0, class: ''}]` | Lines to highlight with numbers and `.classes` |
 | changeThrottle | Number(ms) | `0` |  throttle `codeChange` emit |
 |srcPath| String | `""` | see *Webpack Use* below
 | editorOptions | Object | Merged with defaults below | See [Monaco Editor Options](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html) |
-
-### Editor Default Options
-```js
-defaults: {
-  selectOnLineNumbers: true,
-  roundedSelection: false,
-  readOnly: false,
-  cursorStyle: 'line',
-  automaticLayout: false,
-  glyphMargin: true
-}
-```
 
 ## Component Events
 
@@ -83,10 +69,7 @@ module.exports = {
   },
   data() {
     return {
-      code: '// Type away! \n',
-      options: {
-        selectOnLineNumbers: false
-      }
+      code: '// Type away! \n'
     };
   },
   methods: {
@@ -99,37 +82,3 @@ module.exports = {
   }
 };
 ```
-
-## Webpack Use
-
-By default, monaco-editor is loaded from a cdn asyncronously using `require`. To use a local copy of `monaco-editor` with webpack, we need to expose the dependency in our build directory:
-
-`npm install copy-webpack-plugin --save-dev`
-
-Add this to your webpack.config.js:
-
-```js
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-module.exports = {
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: 'node_modules/monaco-editor/min/vs',
-        to: 'vs',
-      }
-    ])
-  ]
-};
-```
-
-Then, specify the build directory path in the `srcPath` prop. See `src/App.vue` for an example.
-
-## Dev Use
-
-```
-git clone [this repo] .
-npm install
-npm run dev
-```
-
-Edit `src/App.vue`
