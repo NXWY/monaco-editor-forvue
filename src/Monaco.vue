@@ -3,8 +3,11 @@
 </template>
 
 <script>
-var debounce = require('lodash.debounce');
-var monacoLoader = require('./MonacoLoader');
+// var debounce = require('lodash.debounce');
+// var monacoLoader = require('./MonacoLoader');
+
+import debounce from 'lodash.debounce';
+import monacoLoader from './MonacoLoader';
 
 export default {
     props: {
@@ -93,7 +96,7 @@ export default {
                 readOnly: false,
                 cursorStyle: 'line',
                 automaticLayout: false,
-                glyphMargin: true,
+                glyphMargin: false,
                 folding: true
             }
         }

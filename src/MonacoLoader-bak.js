@@ -1,36 +1,28 @@
-export default {
+module.exports = {
 
     /* For now: default to cdn. */
-    load: function(path, callback) {
-
-        var srcPath = '';
-
-        if(path) {
-            srcPath = path;
-        }else {
-            srcPath = 'https://s.rokidcdn.com/developer/lib/monaco';
-        }
+    load(srcPath = 'https://as.alipayobjects.com/g/cicada/monaco-editor-mirror/0.6.1/min', callback) {
 
         if (window.monaco) {
             callback();
             return;
         }
 
-        var config = {
+        const config = {
             paths: {
                 vs: srcPath + '/vs'
             }
         }
 
-        var loaderUrl = config.paths.vs + '/loader.js';
-        var onGotAmdLoader = function() {
+        const loaderUrl = `${config.paths.vs}/loader.js`;
+        const onGotAmdLoader = () => {
 
             if (window.LOADER_PENDING) {
                 window.require.config(config);
             }
 
             // Load monaco
-            window.require(['vs/editor/editor.main'], function() {
+            window.require(['vs/editor/editor.main'], () => {
                 callback();
             });
 
@@ -43,7 +35,7 @@ export default {
 
                 if (loaderCallbacks && loaderCallbacks.length) {
 
-                    var currentCallback = loaderCallbacks.shift();
+                    let currentCallback = loaderCallbacks.shift();
 
                     while (currentCallback) {
                         currentCallback.fn.call(currentCallback.window);
@@ -67,7 +59,7 @@ export default {
         } else {
             if (typeof window.require === 'undefined') {
 
-                var loaderScript = window.document.createElement('script');
+                const loaderScript = window.document.createElement('script');
 
                 loaderScript.type = 'text/javascript';
                 loaderScript.src = loaderUrl;
