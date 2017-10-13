@@ -45,9 +45,9 @@
 21 silly publish   homepage: 'https://github.com/NXWY/monaco-editor-forvue#readme',
 21 silly publish   readme: '# vue-monaco-editor\n\n> Monaco Editor Vue Component\n\n> Based off [React Monaco Editor](https://github.com/superRaytin/react-monaco-editor)\n\n> [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)\n\n## Setup\n\n``` bash\nnpm install vue-monaco-editor --save\n```\n\n## Simple Vue Use\n\n```js\nimport MonacoEditor from \'vue-monaco-editor\'\n\n// use in component\nexport default {\n  components: {\n    MonacoEditor\n  }\n}\n```\n\n## Component Props\n\n| Option        | Type          | Default | Description\n|:-------------|:-------------|:-------|:-------|\n| language      | String        | `javascript` | |\n| height        | Number/String | `100%` ||\n| width | Number/String | `100%` ||\n| code | String | `// code \\n` | Initial code to show |\n| theme | String | `vs-dark` | vs, hc-black, or vs-dark |\n| highlighted | Array[Object] | `[{ number: 0, class: \'\'}]` | Lines to highlight with numbers and `.classes` |\n| changeThrottle | Number(ms) | `0` |  throttle `codeChange` emit |\n|srcPath| String | `""` | see *Webpack Use* below\n| editorOptions | Object | Merged with defaults below | See [Monaco Editor Options](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html) |\n\n### Editor Default Options\n```js\ndefaults: {\n  selectOnLineNumbers: true,\n  roundedSelection: false,\n  readOnly: false,\n  cursorStyle: \'line\',\n  automaticLayout: false,\n  glyphMargin: true\n}\n```\n\n## Component Events\n\n*These events are available to parent component*\n\n| Event        | Returns          | Description\n|:-------------|:-------------|:-------|\n|mounted|`editor`[editor instance]|Emitted when editor has mounted|\n|codeChange|`editor`[editor instance]|Emitted when code has changed|\n\n## Example\n\n*Component Implementation*\n```vue\n<MonacoEditor\n    height="600"\n    language="typescript"\n    :code="code"\n    :editorOptions="options"\n    @mounted="onMounted"\n    @codeChange="onCodeChange"\n    >\n</MonacoEditor>\n```\n\n*Parent*\n```js\nmodule.exports = {\n  components: {\n    Monaco\n  },\n  data() {\n    return {\n      code: \'// Type away! \\n\',\n      options: {\n        selectOnLineNumbers: false\n      }\n    };\n  },\n  methods: {\n    onMounted(editor) {\n      this.editor = editor;\n    },\n    onCodeChange(editor) {\n      console.log(editor.getValue());\n    }\n  }\n};\n```\n\n## Webpack Use\n\nBy default, monaco-editor is loaded from a cdn asyncronously using `require`. To use a local copy of `monaco-editor` with webpack, we need to expose the dependency in our build directory:\n\n`npm install copy-webpack-plugin --save-dev`\n\nAdd this to your webpack.config.js:\n\n```js\nconst CopyWebpackPlugin = require(\'copy-webpack-plugin\');\nmodule.exports = {\n  plugins: [\n    new CopyWebpackPlugin([\n      {\n        from: \'node_modules/monaco-editor/min/vs\',\n        to: \'vs\',\n      }\n    ])\n  ]\n};\n```\n\nThen, specify the build directory path in the `srcPath` prop. See `src/App.vue` for an example.\n\n## Dev Use\n\n```\ngit clone [this repo] .\nnpm install\nnpm run dev\n```\n\nEdit `src/App.vue`\n',
 21 silly publish   readmeFilename: 'README.md',
-21 silly publish   gitHead: 'fe9a5ff1bdd9f38569b9b5d367e80dfd7de6280d',
+21 silly publish   gitHead: '295537b3ff5c194343bcabf3234b47591611bbcf',
 21 silly publish   _id: 'monaco-editor-forvue@1.0.0',
-21 silly publish   _shasum: 'b402c82b8ea247fcf7cce3ac900625ba7100d631',
+21 silly publish   _shasum: 'de43efe9661d6e14abe5fddaf29aa53a76cef488',
 21 silly publish   _from: '.' }
 22 verbose getPublishConfig undefined
 23 silly mapToRegistry name monaco-editor-forvue
@@ -66,22 +66,22 @@
 29 silly publish uploading /Users/hizhou/.npm/monaco-editor-forvue/1.0.0/package.tgz
 30 verbose request uri https://registry.npmjs.org/monaco-editor-forvue
 31 verbose request sending authorization for write operation
-32 info attempt registry request try #1 at 19:50:08
+32 info attempt registry request try #1 at 19:56:52
 33 verbose request using bearer token for auth
-34 verbose request id ecde043527352ed6
+34 verbose request id 3d4b035434ad4947
 35 http request PUT https://registry.npmjs.org/monaco-editor-forvue
 36 http 403 https://registry.npmjs.org/monaco-editor-forvue
 37 verbose headers { 'content-type': 'application/json',
 37 verbose headers   'cache-control': 'max-age=300',
 37 verbose headers   'content-length': '104',
 37 verbose headers   'accept-ranges': 'bytes',
-37 verbose headers   date: 'Fri, 13 Oct 2017 11:50:17 GMT',
+37 verbose headers   date: 'Fri, 13 Oct 2017 11:57:00 GMT',
 37 verbose headers   via: '1.1 varnish',
 37 verbose headers   connection: 'keep-alive',
-37 verbose headers   'x-served-by': 'cache-nrt6129-NRT',
+37 verbose headers   'x-served-by': 'cache-nrt6135-NRT',
 37 verbose headers   'x-cache': 'MISS',
 37 verbose headers   'x-cache-hits': '0',
-37 verbose headers   'x-timer': 'S1507895412.604820,VS0,VE5410',
+37 verbose headers   'x-timer': 'S1507895814.862769,VS0,VE6955',
 37 verbose headers   vary: 'Accept-Encoding, Accept' }
 38 verbose request invalidating /Users/hizhou/.npm/registry.npmjs.org/monaco-editor-forvue on PUT
 39 error publish Failed PUT 403
