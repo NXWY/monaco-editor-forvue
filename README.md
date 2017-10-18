@@ -35,7 +35,7 @@ export default {
 | theme | String | `vs-dark` | vs, hc-black, or vs-dark |
 | changeThrottle | Number(ms) | `0` |  throttle `codeChange` emit |
 |srcPath| String | `""` | see *Webpack Use* below
-| editorOptions | Object | Merged with defaults below | See [Monaco Editor Options](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html) |
+| options | Object | Merged with defaults below | See [Monaco Editor Options](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html) |
 
 ## Component Events
 
@@ -50,20 +50,22 @@ export default {
 
 *Component Implementation*
 ```vue
-<MonacoEditor
+<Monaco
+    width="600"
     height="600"
-    language="typescript"
+    language="javascript"
+    theme="vs"
     :code="code"
-    :editorOptions="options"
+    :options="options"
+    :changeThrottle="500"
     @mounted="onMounted"
     @codeChange="onCodeChange"
     >
-</MonacoEditor>
+</Monaco>
 ```
 
-*Parent*
 ```js
-module.exports = {
+export default {
   components: {
     Monaco
   },
@@ -77,8 +79,18 @@ module.exports = {
       this.editor = editor;
     },
     onCodeChange(editor) {
-      console.log(editor.getValue());
+      console.log(this.editor.getValue());
     }
   }
-};
+}
 ```
+
+```editor's common methods
+set value:
+this.editor.setValue(yourstring);
+
+rerender editor:
+this.editor.layout({
+    width: 800,
+    height: 800
+});
