@@ -5,7 +5,7 @@ export default {
 
         var srcPath = '';
 
-        if(path) {
+        if(path !== undefined) {
             srcPath = path;
         }else {
             srcPath = 'https://s.rokidcdn.com/developer/lib/monaco';
