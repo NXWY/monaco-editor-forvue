@@ -39,7 +39,7 @@ export default {
 
                 window.LOADER_PENDING = false;
 
-                const loaderCallbacks = window.LOADER_CALLBACKS;
+                var loaderCallbacks = window.LOADER_CALLBACKS;
 
                 if (loaderCallbacks && loaderCallbacks.length) {
 
